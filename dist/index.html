@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Drum Machine</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <html>
+  <head>
+    <title>Drum Machine</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+     <script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const drumPad = [
+        { key: "Q", name: "Heater-1", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" },
+        { key: "W", name: "Heater-2", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" },
+        { key: "E", name: "Heater-3", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" },
+        { key: "A", name: "Heater-4", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" },
+        { key: "S", name: "Clap", src: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" },
+        { key: "D", name: "Open-HH", src: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" },
+        { key: "Z", name: "Kick-n'-Hat", src: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" },
+        { key: "X", name: "Kick", src: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" },
+        { key: "C", name: "Closed-HH", src: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" },
+      ];
+      
+      window.addEventListener('keydown', (e) => {
+        if (drumPad.some(k => k.key === e.key.toUpperCase())) {
+          const {key, name} = drumPad.find(item => item.key === e.key.toUpperCase())
+          play(key, name);
+        }
+      });
+      
+      const play = (key, name) => {
+        document.getElementById(key).play()
+        document.getElementById("display").innerHTML = name
+      }
+      
+      const getRandomColor = () => {
+				let code = '0123456789ABCDEF';
+				let newColor = '#';
+				for(let i = 0; i < 6; i++){
+					newColor += code[Math.floor(Math.random() * 16)]
+				};
+				return newColor;
+			};
+    </script>
+    
+    <script type="text/babel">
+      const { useState } = React;
+      
+      function App() {
+        const [playFunction] = useState(window.play)
+        
+        return (
+          <div id="drum-machine" className="font-sans font-bold bg-[linear-gradient(145deg,#2a2a2a,#000)] w-[750px] h-[350px] flex flex-row p-2 gap-2 rounded-md">
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 flex-1">
+              {drumPad.map((item, index) => {
+                const color = getRandomColor();
+                return <button 
+                        key="{index}" 
+                        className="drum-pad bg-white rounded-lg w-auto h-auto flex justify-center items-center"
+                        style={{borderColor: color,
+                                boxShadow: `0 0 15px ${color}, inset 0 0 10px #000`,
+                               }}
+                        onClick={() => play(item.key, item.name)}>{item.key}
+                        <audio id={item.key} src={item.src}></audio>
+                       </button>
+              })}
+            </div>
+            <div id="display" className="flex flex-1 bg-white h-1/4 items-center justify-center rounded-lg">
+            </div>
+
+          </div>
+      );
+     }
+      
+      ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+  </body>
+</html>
+    
+  </body>
+  
+</html>
