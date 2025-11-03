@@ -7,6 +7,7 @@ A **React.js** drum machine that lets users play drum sounds by either clicking 
 ## 🎯 Purpose
 This project aims to provide hands-on experience with **React event handling** and **state management**, while building a fun, interactive web-based drum machine.
 Users can play sounds in real-time and see which drum pad is active.
+
 ---
 
 ## ⚙️ Features
