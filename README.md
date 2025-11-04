@@ -38,12 +38,6 @@ Users can play sounds in real-time and see which drum pad is active.
 
 ---
 
-## 🚀 How to Run
-Open the **`index.html`** file inside the `dist/` folder in your browser,  
-or view the live demo directly below.
-
----
-
 ## 👀 Live Demo
 🔗 [View on CodePen](https://codepen.io/BARROA-vincent-angelo/pen/dPGVOZY)
 
